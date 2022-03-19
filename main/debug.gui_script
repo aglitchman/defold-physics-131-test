@@ -1,0 +1,36 @@
+function init(self)
+	self.dt_sum = 0
+	self.frames = 0
+	self.time = socket.gettime()
+
+	self.text_node = gui.get_node("text")
+end
+
+function final(self)
+end
+
+function update(self, dt)
+	self.frames = self.frames + 1
+	self.dt_sum = self.dt_sum + dt
+
+	local t = socket.gettime()
+	if t - self.time > 1 then
+		local t_delta = t - self.time
+		self.time = t
+
+		local s = string.format("Number of updates per %.02f sec: [%d], dt sum: [%.02f]", t_delta, self.frames, self.dt_sum)
+		gui.set_text(self.text_node, s)
+
+		self.dt_sum = 0
+		self.frames = 0
+	end
+end
+
+function on_message(self, message_id, message, sender)
+end
+
+function on_input(self, action_id, action)
+end
+
+function on_reload(self)
+end
