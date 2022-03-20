@@ -1,3 +1,5 @@
+go.property("debug_gui_url", msg.url("/go#debug"))
+
 function init(self)
 end
 
@@ -10,7 +12,7 @@ end
 function on_message(self, message_id, message, sender)
 	if message_id == hash("collision_response") then
 		if sender == msg.url(nil, nil, "collisionobject1") then
-			msg.post("/go#debug", "inc_collision_response")
+			msg.post(self.debug_gui_url, "inc_collision_response")
 		end
 	end
 end

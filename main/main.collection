@@ -43,8 +43,48 @@ instances {
   id: "kinematic_response_test"
   prototype: "/main/kinematic_response_test.go"
   position {
-    x: 476.0
-    y: 404.0
+    x: 480.0
+    y: 727.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "anchor"
+  prototype: "/main/anchor.go"
+  position {
+    x: 480.0
+    y: 528.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "anchor_stop"
+  prototype: "/main/anchor_stop.go"
+  position {
+    x: 480.0
+    y: 188.0
     z: 0.0
   }
   rotation {
@@ -80,6 +120,24 @@ embedded_instances {
   "components {\n"
   "  id: \"debug\"\n"
   "  component: \"/main/debug.gui\"\n"
+  "  position {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "  }\n"
+  "  rotation {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "    w: 1.0\n"
+  "  }\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"anchor_factory\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/main/anchor.go\\\"\\n"
+  "load_dynamically: false\\n"
+  "\"\n"
   "  position {\n"
   "    x: 0.0\n"
   "    y: 0.0\n"

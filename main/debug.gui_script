@@ -7,13 +7,13 @@ function init(self)
 	self.text1_node = gui.get_node("text1")
 	self.text2_node = gui.get_node("text2")
 	self.text3_node = gui.get_node("text3")
-	self.text4_node = gui.get_node("text4")
 end
 
 function final(self)
 end
 
 function update(self, dt)
+	-- frame info
 	self.frames = self.frames + 1
 	self.dt_sum = self.dt_sum + dt
 
@@ -23,28 +23,32 @@ function update(self, dt)
 		self.time = t
 
 		local s = string.format("Number of updates per %.02f sec = [%d], dt sum = [%.02f], collision resp. = [%d]", t_delta, self.frames, self.dt_sum, self.collision_responses)
-		gui.set_text(self.text4_node, s)
+		gui.set_text(self.text3_node, s)
 
 		self.dt_sum = 0
 		self.frames = 0
 		self.collision_responses = 0
 	end
 
-	local s = "physics.update_frequency = " .. tostring(sys.get_config("physics.update_frequency"))
-	gui.set_text(self.text1_node, s)
+	-- system info
+	local s = ""
+	s = s .. "system_name = " .. tostring(sys.get_sys_info().system_name) .. "\n"
 
-	local s = "display.update_frequency = " .. tostring(sys.get_config("display.update_frequency"))
+	s = s .. "display.update_frequency = " .. tostring(sys.get_config("display.update_frequency"))
 	s = s .. ", display.vsync = " .. tostring(sys.get_config("display.vsync"))
-	s = s .. ", display.swap_interval = " .. tostring(sys.get_config("display.swap_interval"))
-	gui.set_text(self.text2_node, s)
+	s = s .. ", display.swap_interval = " .. tostring(sys.get_config("display.swap_interval")) .. "\n"
 
-	local s = "system_name = " .. tostring(sys.get_sys_info().system_name)
-	gui.set_text(self.text3_node, s)
+	s = s .. "physics.update_frequency = " .. tostring(sys.get_config("physics.update_frequency")) .. "\n"
+
+	gui.set_text(self.text1_node, s)
 end
 
 function on_message(self, message_id, message, sender)
 	if message_id == hash("inc_collision_response") then
 		self.collision_responses = self.collision_responses + 1
+	elseif message_id == hash("anchor_speed") then
+		local s = string.format("Anchor speed: [%.02f] px/sec", message.speed)
+		gui.set_text(self.text2_node, s)
 	end
 end
 
