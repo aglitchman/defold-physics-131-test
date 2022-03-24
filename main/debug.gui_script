@@ -34,11 +34,14 @@ function update(self, dt)
 	local s = ""
 	s = s .. "system_name = " .. tostring(sys.get_sys_info().system_name) .. "\n"
 
-	s = s .. "display.update_frequency = " .. tostring(sys.get_config("display.update_frequency"))
-	s = s .. ", display.vsync = " .. tostring(sys.get_config("display.vsync"))
+	s = s .. "display.update_frequency = " .. tostring(sys.get_config("display.update_frequency")) .. ""
+	s = s .. ", display.vsync = " .. tostring(sys.get_config("display.vsync")) .. ""
 	s = s .. ", display.swap_interval = " .. tostring(sys.get_config("display.swap_interval")) .. "\n"
 
-	s = s .. "physics.update_frequency = " .. tostring(sys.get_config("physics.update_frequency")) .. "\n"
+	s = s .. "physics.type = " .. tostring(sys.get_config("physics.type")) .. ""
+	s = s .. ", physics.use_fixed_timestep = " .. tostring(sys.get_config("physics.use_fixed_timestep")) .. "\n"
+
+	s = s .. "engine.fixed_update_frequency = " .. tostring(sys.get_config("engine.fixed_update_frequency")) .. "\n"
 
 	gui.set_text(self.text1_node, s)
 end

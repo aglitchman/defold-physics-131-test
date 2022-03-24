@@ -6,11 +6,27 @@ end
 function final(self)
 end
 
-function update(self, dt)
+local function is_physics_fixedstep(self)
+	return sys.get_config("physics.use_fixed_timestep", false)
+end
+
+local function apply_force(self)
 	msg.post("#collisionobject", "apply_force", {
 		force = vmath.vector3(0, - self.mass * self.gravity.y, 0),
 		position = go.get_world_position()
 	})
+end
+
+function update(self, dt)
+	if not is_physics_fixedstep(self) then
+		apply_force(self)
+	end
+end
+
+function fixed_update(self, dt)
+	if is_physics_fixedstep(self) then
+		apply_force(self)
+	end
 end
 
 function on_message(self, message_id, message, sender)
