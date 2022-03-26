@@ -33,6 +33,14 @@ instances {
     z: 0.0
     w: 1.0
   }
+  component_properties {
+    id: "balloon"
+    properties {
+      id: "apply_in_fixed_update"
+      value: "false"
+      type: PROPERTY_TYPE_BOOLEAN
+    }
+  }
   scale3 {
     x: 1.0
     y: 1.0
@@ -99,6 +107,46 @@ instances {
     z: 1.0
   }
 }
+instances {
+  id: "car"
+  prototype: "/main/car.go"
+  position {
+    x: 306.0
+    y: 578.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "car_static"
+  prototype: "/main/car_static.go"
+  position {
+    x: 306.0
+    y: 238.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
 scale_along_z: 0
 embedded_instances {
   id: "go"
@@ -136,6 +184,24 @@ embedded_instances {
   "  id: \"anchor_factory\"\n"
   "  type: \"factory\"\n"
   "  data: \"prototype: \\\"/main/anchor.go\\\"\\n"
+  "load_dynamically: false\\n"
+  "\"\n"
+  "  position {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "  }\n"
+  "  rotation {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "    w: 1.0\n"
+  "  }\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"car_factory\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/main/car.go\\\"\\n"
   "load_dynamically: false\\n"
   "\"\n"
   "  position {\n"

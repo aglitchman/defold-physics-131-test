@@ -1,0 +1,36 @@
+go.property("debug_gui_url", msg.url("/go#debug"))
+go.property("car_factory_url", msg.url("/go#car_factory"))
+
+local function restart_car(self)
+	local time = socket.gettime()
+	local delay = time - self.start_time
+
+	go.delete()
+	factory.create(self.car_factory_url, self.start_pos)
+
+	msg.post(self.debug_gui_url, "restart_delay", { delay = delay })
+end
+
+function init(self)
+	self.start_pos = go.get_position()
+	self.start_time = socket.gettime()
+
+	timer.delay(5, false, restart_car)
+end
+
+function final(self)
+end
+
+function update(self, dt)
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("collision_response") then
+	end
+end
+
+function on_input(self, action_id, action)
+end
+
+function on_reload(self)
+end

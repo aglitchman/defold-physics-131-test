@@ -8,6 +8,7 @@ function init(self)
 	self.text1_node = gui.get_node("text1")
 	self.text2_node = gui.get_node("text2")
 	self.text3_node = gui.get_node("text3")
+	self.text4_node = gui.get_node("text4")
 end
 
 function final(self)
@@ -52,6 +53,9 @@ function on_message(self, message_id, message, sender)
 	elseif message_id == hash("anchor_speed") then
 		local s = string.format("Anchor speed: [%.02f] px/sec", message.speed)
 		gui.set_text(self.text2_node, s)
+	elseif message_id == hash("restart_delay") then
+		local s = string.format("Real restart delay: [%.02f] sec", message.delay)
+		gui.set_text(self.text4_node, s)
 	end
 end
 
