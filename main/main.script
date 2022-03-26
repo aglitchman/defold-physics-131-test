@@ -1,3 +1,5 @@
+local debug_data = require("main.debug")
+
 function init(self)
 	msg.post("@render:", "use_fixed_fit_projection")
 end
@@ -6,6 +8,11 @@ function final(self)
 end
 
 function update(self, dt)
+end
+
+function fixed_update(self, dt)
+	debug_data.fixed_dt_sum = debug_data.fixed_dt_sum + dt
+	debug_data.fixed_updates = debug_data.fixed_updates + 1
 end
 
 function on_message(self, message_id, message, sender)

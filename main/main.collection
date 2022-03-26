@@ -3,8 +3,8 @@ instances {
   id: "balloon1"
   prototype: "/main/balloon.go"
   position {
-    x: 160.0
-    y: 400.0
+    x: 94.0
+    y: 628.0
     z: 0.0
   }
   rotation {
@@ -23,8 +23,8 @@ instances {
   id: "balloon2"
   prototype: "/main/balloon.go"
   position {
-    x: 160.0
-    y: 720.0
+    x: 94.0
+    y: 793.0
     z: 0.0
   }
   rotation {
@@ -44,7 +44,7 @@ instances {
   prototype: "/main/kinematic_response_test.go"
   position {
     x: 480.0
-    y: 727.0
+    y: 800.0
     z: 0.0
   }
   rotation {
@@ -64,7 +64,7 @@ instances {
   prototype: "/main/anchor.go"
   position {
     x: 480.0
-    y: 528.0
+    y: 578.0
     z: 0.0
   }
   rotation {
@@ -84,7 +84,7 @@ instances {
   prototype: "/main/anchor_stop.go"
   position {
     x: 480.0
-    y: 188.0
+    y: 238.0
     z: 0.0
   }
   rotation {

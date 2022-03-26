@@ -1,8 +1,9 @@
+local debug_data = require("main.debug")
+
 function init(self)
-	self.dt_sum = 0
-	self.frames = 0
-	self.collision_responses = 0
 	self.time = socket.gettime()
+
+	debug_data.reset()
 
 	self.text1_node = gui.get_node("text1")
 	self.text2_node = gui.get_node("text2")
@@ -14,20 +15,19 @@ end
 
 function update(self, dt)
 	-- frame info
-	self.frames = self.frames + 1
-	self.dt_sum = self.dt_sum + dt
+	debug_data.updates = debug_data.updates + 1
+	debug_data.dt_sum = debug_data.dt_sum + dt
 
 	local t = socket.gettime()
 	if t - self.time > 1 then
 		local t_delta = t - self.time
 		self.time = t
 
-		local s = string.format("Number of updates per %.02f sec = [%d], dt sum = [%.02f], collision resp. = [%d]", t_delta, self.frames, self.dt_sum, self.collision_responses)
+		local s = string.format("Number of updates per %.02f sec = [%d], dt sum = [%.02f],\n fixed updates = [%d], fixed dt sum = [%.02f],\n collision responses = [%d] (<- should equal the number of fixed updates)", 
+		t_delta, debug_data.updates, debug_data.dt_sum, debug_data.fixed_updates, debug_data.fixed_dt_sum, debug_data.collision_responses)
 		gui.set_text(self.text3_node, s)
 
-		self.dt_sum = 0
-		self.frames = 0
-		self.collision_responses = 0
+		debug_data.reset()
 	end
 
 	-- system info
@@ -48,7 +48,7 @@ end
 
 function on_message(self, message_id, message, sender)
 	if message_id == hash("inc_collision_response") then
-		self.collision_responses = self.collision_responses + 1
+		
 	elseif message_id == hash("anchor_speed") then
 		local s = string.format("Anchor speed: [%.02f] px/sec", message.speed)
 		gui.set_text(self.text2_node, s)
