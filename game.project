@@ -1,5 +1,6 @@
 [bootstrap]
-main_collection = /main/main.collectionc
+main_collection = /bootstrap/bootstrap.collectionc
+render = /custom_render/custom.renderc
 
 [script]
 shared_state = 1
@@ -23,7 +24,7 @@ game_binding = /builtins/input/all.input_bindingc
 scale = 0.01
 gravity_y = -480.0
 use_fixed_timestep = 1
-type = 2D
+type = 3D
 
 [html5]
 cssfile = /builtins/manifests/web/dark_theme.css
@@ -35,7 +36,4 @@ clear_color_alpha = 1.0
 clear_color_red = 0.25
 clear_color_green = 0.25
 clear_color_blue = 0.25
-
-[engine]
-fixed_update_frequency = 60
 
