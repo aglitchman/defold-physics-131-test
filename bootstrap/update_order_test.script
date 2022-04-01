@@ -8,6 +8,10 @@ local PREFIXES = {
     "bootstrap"
 }
 
+local FRAME_CHAR = {
+    ">", " "
+}
+
 function init(self)
 end
 
@@ -19,7 +23,7 @@ function update(self, dt)
         return
     end
 
-    print(string.format("Frame %05d, %10s, %13s, %.05f", custom_render.frame_num, PREFIXES[self.prefix], "update", dt))
+    print(string.format("%sFrame %05d, %10s, %13s, %.05f", FRAME_CHAR[custom_render.frame_num % 2 + 1], custom_render.frame_num, PREFIXES[self.prefix], "update", dt))
 end
 
 function fixed_update(self, dt)
@@ -27,7 +31,7 @@ function fixed_update(self, dt)
         return
     end
 
-    print(string.format("Frame %05d, %10s, %13s, %.05f", custom_render.frame_num, PREFIXES[self.prefix], "fixed_update", dt))
+    print(string.format("%sFrame %05d, %10s, %13s, %.05f", FRAME_CHAR[custom_render.frame_num % 2 + 1], custom_render.frame_num, PREFIXES[self.prefix], "fixed_update", dt))
 end
 
 function on_message(self, message_id, message, sender)
